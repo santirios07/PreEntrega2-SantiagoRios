@@ -20,7 +20,7 @@ function calcularPrecioFinal(){
     } else if(producto === "vestido"){
         precio = 6500;
     } else if(producto === "remera"){
-        precio === 4300;
+        precio = 4300;
     }else{
         //CICLO SI SE INGRESA MAL LE PRODUCTO
         while(producto !=="pantalon" && producto !=="vestido" && producto !=="remera"){
@@ -48,7 +48,7 @@ function calcularPrecioFinal(){
     } else if (metodoPago === "debito") {
         interes = 1.00;
     } else if (metodoPago === "credito") {
-        let cuotas = parseFloat(prompt("Ingrese la cantidad de cuotas, 3 o 6:"));
+        let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas, 3 o 6:"));
         //CICLO DE VERIFICACION DE CUOTAS
         while(cuotas !==3 && cuotas !==6){
             cuotas = parseInt(prompt("La cantidad de cuotas ingresadas no es correcta volver a ingresar. Ingrese la cantidad de cuotas, 3 o 6:"));
