@@ -1,13 +1,90 @@
 //ALGORITMO PARA DETECTAR PRODUCTO EN LA LISTA
 //SELECCIONAR METODO DE PAGO Y CALCULAR PRECIO FINAL SEGUN INTERES
+//SE AGREGA CARRITO Y ARRAY DE PRODUCTOS CON SUS VARIANTES
 
 
 //PROMPT QUE PIDE EL NOMBRE DEL CLIENTE
 let nombre = prompt("Hola! Bienvenido a Mar Indumentaria. Por favor ingrese su nombre para continuar.").toUpperCase();
 
+//DEFINIENDO ARRAY DEL CARRITO VACIO PARA IR AGREGANDO LOS PRODUCTOS
+const carrito=[];
 
-//FUNCION CALCULO DE PRECIO FINAL
-function calcularPrecioFinal(){
+//DEFINIENDO MIS PRODUCTOS A VENDER
+// DIFERENTES TIPOS DE PANTALONES, REMERAS Y VESTIDOS
+const productos=[
+    {
+        producto: "short",
+        categoria: "pantalones",
+        precio: 4500,
+    },
+    {
+        producto: "jean",
+        categoria: "pantalones",
+        precio: 7500,
+    },
+    {
+        producto: "cargo",
+        categoria: "pantalones",
+        precio: 6000,
+    },
+    {
+        producto: "remera",
+        categoria: "remeras",
+        precio: 5700,
+    },
+    {
+        producto: "musculosa",
+        categoria: "remeras",
+        precio: 4500,
+    },
+    {
+        producto: "chomba",
+        categoria: "remeras",
+        precio: 7100,
+    },
+    {
+        producto: "vestidoCorto",
+        categoria: "vestidos",
+        precio: 8000,
+    },
+    {
+        producto: "vestidoLargo",
+        categoria: "vestidos",
+        precio: 9300,
+    },
+]
+
+//MENU PARA SELECCIONAR OPCIONES
+let opcionMenu;
+do{
+    opcionMenu = prompt("Encantados de conocerte " + nombre + "! Porfavor selecciona una opción:\n1. Ver productos \n2. Mostrar carrito \n3. Salir.")
+
+    switch(opcionMenu){
+        case "1":
+            const categoria = prompt("Ingrese la categoria de la prenda que quieras comprar")
+            break;
+        case "2":
+            mostrarCarrito();
+            break;
+        case "3":
+            alert("Lamentamos que nada te haya gustado. Nos vemos la próxima!")
+            break;
+        default:
+            alert("La opción ingresada no es válida. Por favor, vuelva a elegir una opción");    
+    }
+}while (opcionMenu !== "3");
+
+
+
+
+
+
+
+
+//FUNCION CALCULO DE TOTAL FINAL
+function calcularTotalFinal(total){
+    /*!
+    //!COMENTANDO PARTE DE PRECIO Y PRODUCTOS PARA ARMAR CARRITO APARTE
     //DECLARANDO LA VARIABLE PRECIO
     let precio;
 
@@ -27,7 +104,7 @@ function calcularPrecioFinal(){
             producto = prompt("El producto ingresado no es correcto. Elije aquel que quieras comprar: Pantalon $9.000. Vestido $6.500. Remera $4.300.").toLowerCase();
         };
     }
-
+    */
 
     //PROMPT PARA SELECCIONAR METODO DE PAGO
     let metodoPago = prompt("Perfecto! Has seleccionado tu " + producto + ". Ahora selecciona el metodo de pago con el que quieres realizar tu compra. Efectivo: 15% de descuento. Debito: sin recargo. Credito: en 3 cuotas con un 10% de interes o 6 cuotas con 25% de interés.").toLowerCase();
@@ -48,10 +125,10 @@ function calcularPrecioFinal(){
     } else if (metodoPago === "debito") {
         interes = 1.00;
     } else if (metodoPago === "credito") {
-        let cuotas = parseInt(prompt("Ingrese la cantidad de cuotas, 3 o 6:"));
+        let cuotas = Number(prompt("Ingrese la cantidad de cuotas, 3 o 6:"));
         //CICLO DE VERIFICACION DE CUOTAS
         while(cuotas !==3 && cuotas !==6){
-            cuotas = parseInt(prompt("La cantidad de cuotas ingresadas no es correcta volver a ingresar. Ingrese la cantidad de cuotas, 3 o 6:"));
+            cuotas = Number(prompt("La cantidad de cuotas ingresadas no es correcta volver a ingresar. Ingrese la cantidad de cuotas, 3 o 6:"));
         }
         //VALOR INTERES POR CUOTA
         if(cuotas === 3){
@@ -61,11 +138,11 @@ function calcularPrecioFinal(){
         }
     }
 
-    return parseInt(precio*interes);
+    return Number(total*interes);
 }
 
 //EJECUTANDO LA FUNCION
-precioFinal = calcularPrecioFinal();
+calcularTotalFinal(totalCompra);
 
 //ALERTA CON EL MONTO FINAL DE LA COMPRA
 alert("Tu compra fue realizada, el costo de la misma es de $" + precioFinal + ". Muchas gracias por confiar en nosotros!");
