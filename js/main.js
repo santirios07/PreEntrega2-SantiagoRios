@@ -43,12 +43,12 @@ const productos=[
         precio: 7100,
     },
     {
-        producto: "vestidoCorto",
+        producto: "vestidocorto",
         categoria: "vestidos",
         precio: 8000,
     },
     {
-        producto: "vestidoLargo",
+        producto: "vestidolargo",
         categoria: "vestidos",
         precio: 9300,
     },
@@ -61,9 +61,17 @@ do{
 
     switch(opcionMenu){
         case "1":
+            //MAP QUE CREA ARRAY DE LAS CATEGORIAS DE PRODUCTOS QUE EXISTEN
             const listaCategorias = [...new Set(productos.map((producto) => producto.categoria))];
-            console.log(listaCategorias);
-            const categoriaIngresada = prompt("Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
+
+            //JOIN AL ARRAY CREADO PARA MOSTRAR EN PANTALLA LA CATEGORIA A SELECCIONAR
+            let categoriaIngresada = prompt("Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
+
+            //VERIFICACION DE CATEGORIA INGRESADA
+            while(!listaCategorias.includes(categoriaIngresada)) {
+                categoriaIngresada = prompt("La categoría ingresada no es válida. Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
+            } 
+            //FUNCION DE AGREGAR AL CARRITO EL PRODUCTO
             agregarAlCarrito(categoriaIngresada);
             break;
         case "2":
@@ -86,13 +94,26 @@ function agregarAlCarrito(categoria){
     let mensaje = "Elegiste la categoria " + categoria.toUpperCase() + ". Por favor, selecciona el producto que quieras añadir al carrito:\n";
     categoriaProducto.forEach(producto => {
         mensaje += "-" + producto.producto.toUpperCase() + ": $" + producto.precio + "\n";
-
     })
 
-    //PROMPT CON MENSAJE E INGRESO DE PRODUCTO A AÑADIR AL CARRITO
-    const agregarProducto = prompt(mensaje).toLowerCase();
-    alert("Excelente, agregaste (1)" + agregarProducto.toUpperCase() + " a tu carrito!");
+    let productoCorrecto = false;
 
+    while(!productoCorrecto){
+        //PROMPT CON MENSAJE E INGRESO DE PRODUCTO A AÑADIR AL CARRITO
+        let productoIngresado = prompt(mensaje).toLowerCase()
+    
+        //VERIFICAR SI EL PRODUCTO SELECCIONADO ES CORRECTO
+        productoCorrecto = categoriaProducto.find(producto => producto.producto === productoIngresado)
+        
+        if(!productoCorrecto){
+            alert("El producto seleccionado no es correcto.")
+        }else{
+            alert("Excelente, agregaste (1) " + productoIngresado.toUpperCase() + " a tu carrito!");
+            //PUSHEAR PRODUCTO AL ARRAY DEL CARRITO
+            carrito.push(productoIngresado);  
+            console.log(carrito)
+        }
+    }
     //
 }
 
@@ -162,7 +183,7 @@ function calcularTotalFinal(total){
 }
 
 //EJECUTANDO LA FUNCION
-calcularTotalFinal(totalCompra);
+//calcularTotalFinal(totalCompra);
 
 //ALERTA CON EL MONTO FINAL DE LA COMPRA
-alert("Tu compra fue realizada, el costo de la misma es de $" + precioFinal + ". Muchas gracias por confiar en nosotros!");
+//alert("Tu compra fue realizada, el costo de la misma es de $" + precioFinal + ". Muchas gracias por confiar en nosotros!");
