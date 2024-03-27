@@ -61,7 +61,10 @@ do{
 
     switch(opcionMenu){
         case "1":
-            const categoria = prompt("Ingrese la categoria de la prenda que quieras comprar")
+            const listaCategorias = [...new Set(productos.map((producto) => producto.categoria))];
+            console.log(listaCategorias);
+            const categoriaIngresada = prompt("Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
+            agregarAlCarrito(categoriaIngresada);
             break;
         case "2":
             mostrarCarrito();
@@ -74,7 +77,24 @@ do{
     }
 }while (opcionMenu !== "3");
 
+//ARMADO DE FUNCION PARA AGREGAR PRODUCTOS
+function agregarAlCarrito(categoria){
+    //FILTRAR LOS PRODUCTOS DE LA CATEGORIA INGRESADA
+    const categoriaProducto = productos.filter(productos => productos.categoria === categoria);
 
+    //IR AÑADIENDO PRODUCTO AL MENSAJE POR LA CATEGORIA INGRESADA
+    let mensaje = "Elegiste la categoria " + categoria.toUpperCase() + ". Por favor, selecciona el producto que quieras añadir al carrito:\n";
+    categoriaProducto.forEach(producto => {
+        mensaje += "-" + producto.producto.toUpperCase() + ": $" + producto.precio + "\n";
+
+    })
+
+    //PROMPT CON MENSAJE E INGRESO DE PRODUCTO A AÑADIR AL CARRITO
+    const agregarProducto = prompt(mensaje).toLowerCase();
+    alert("Excelente, agregaste (1)" + agregarProducto.toUpperCase() + " a tu carrito!");
+
+    //
+}
 
 
 
