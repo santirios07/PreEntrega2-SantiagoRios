@@ -56,14 +56,18 @@ const productos=[
 
 //MENU PARA SELECCIONAR OPCIONES
 let opcionMenu;
+//VARIABLE PARA SABER SI LA COMPRA FUE TERMINADA
+let compraTerminada = false;
+
 do{
     opcionMenu = prompt("Encantados de conocerte " + nombre + "! Porfavor selecciona una opción:\n1. Ver productos \n2. Mostrar carrito \n3. Salir.")
 
     switch(opcionMenu){
         case "1":
             //MAP QUE CREA ARRAY DE LAS CATEGORIAS DE PRODUCTOS QUE EXISTEN
+            //NEW SET HACE QUE NO SE REPITAN LAS CATEGORIAS
             const listaCategorias = [...new Set(productos.map((producto) => producto.categoria))];
-
+            
             //JOIN AL ARRAY CREADO PARA MOSTRAR EN PANTALLA LA CATEGORIA A SELECCIONAR
             let categoriaIngresada = prompt("Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
 
@@ -75,15 +79,15 @@ do{
             agregarAlCarrito(categoriaIngresada);
             break;
         case "2":
-            mostrarCarrito();
+            compraTerminada = mostrarCarrito();
             break;
         case "3":
             alert("Lamentamos que nada te haya gustado. Nos vemos la próxima!")
             break;
         default:
-            alert("La opción ingresada no es válida. Por favor, vuelva a elegir una opción");    
+            alert("La opción ingresada no es válida. Por favor, vuelva a elegir una opción");   
     }
-}while (opcionMenu !== "3");
+}while (opcionMenu !== "3" && !compraTerminada);
 
 //ARMADO DE FUNCION PARA AGREGAR PRODUCTOS
 function agregarAlCarrito(categoria){
@@ -109,46 +113,51 @@ function agregarAlCarrito(categoria){
             alert("El producto seleccionado no es correcto.")
         }else{
             alert("Excelente, agregaste (1) " + productoIngresado.toUpperCase() + " a tu carrito!");
+            
             //PUSHEAR PRODUCTO AL ARRAY DEL CARRITO
-            carrito.push(productoIngresado);  
-            console.log(carrito)
+            carrito.push(productoCorrecto);
         }
     }
-    //
 }
 
+//FUNCION PARA MOSTRAR EL CARRITO CON CADA PRODUCTO Y SU TOTAL
+function mostrarCarrito(){
+    //INICIALIZAR EL PRECIO TOTAL
+    let precioTotal = 0
 
+    //MOSTRAR CADA PRODUCTO EN EL CARRITO
+    let mensajeCarrito = "Excelente " + nombre.toUpperCase() + "! Estos son los productos que seleccionaste para comprar.\n";
+    carrito.forEach(producto => {
+        mensajeCarrito += "-" + producto.producto.toUpperCase() + ": $" + producto.precio + "\n";
+        precioTotal += producto.precio;
+    })
 
-
+    //PROMPT PARA DECIDIR SI CONTINUA COMPRANDO O FINALIZA LA COMPRA
+    let opcionCarrito
+    do{
+        opcionCarrito = prompt(mensajeCarrito + "\nTotal carrito: $" + precioTotal + ". \n\nSelecciona una opción:\n1. Ir a pagar\n2. Seguir comprando")
+        switch(opcionCarrito){
+            case "1":
+                //SI ELIGE IR A PAGAR SE EJECUTA LA FUNCION DEL METODO DE PAGO
+                calcularTotalFinal(precioTotal);
+                compraTerminada = true;
+                break;
+            case "2":
+                break;
+            default:
+                alert("La opción ingresada no es válida. Por favor, vuelva a elegir una opción");
+        }
+    }
+    while(opcionCarrito != 2 && opcionCarrito != 1)
+    
+    return compraTerminada;
+}
 
 
 //FUNCION CALCULO DE TOTAL FINAL
 function calcularTotalFinal(total){
-    /*!
-    //!COMENTANDO PARTE DE PRECIO Y PRODUCTOS PARA ARMAR CARRITO APARTE
-    //DECLARANDO LA VARIABLE PRECIO
-    let precio;
-
-    //PROMPT PARA SELECCIONAR PRODUCTO
-    let producto = prompt("Encantados de conocerte " + nombre + "!" + " Estos son nuestros productos! Elije aquel que quieras comprar: Pantalon $9.000. Vestido $6.500. Remera $4.300. ").toLowerCase();
-
-    //CONDICIONAL SEGUN PRODUCTO INGRESADO EL PRECIO QUE TENDRA
-    if(producto === "pantalon"){
-        precio = 9000;
-    } else if(producto === "vestido"){
-        precio = 6500;
-    } else if(producto === "remera"){
-        precio = 4300;
-    }else{
-        //CICLO SI SE INGRESA MAL LE PRODUCTO
-        while(producto !=="pantalon" && producto !=="vestido" && producto !=="remera"){
-            producto = prompt("El producto ingresado no es correcto. Elije aquel que quieras comprar: Pantalon $9.000. Vestido $6.500. Remera $4.300.").toLowerCase();
-        };
-    }
-    */
-
     //PROMPT PARA SELECCIONAR METODO DE PAGO
-    let metodoPago = prompt("Perfecto! Has seleccionado tu " + producto + ". Ahora selecciona el metodo de pago con el que quieres realizar tu compra. Efectivo: 15% de descuento. Debito: sin recargo. Credito: en 3 cuotas con un 10% de interes o 6 cuotas con 25% de interés.").toLowerCase();
+    let metodoPago = prompt("Tu total es $" + total + ". Ahora selecciona el metodo de pago con el que quieres realizar tu compra.\n Efectivo: 15% de descuento.\n Debito: sin recargo.\n Credito: \n -3 cuotas con un 10% de interes\n -6 cuotas con 25% de interés.").toLowerCase();
 
 
 
@@ -179,11 +188,5 @@ function calcularTotalFinal(total){
         }
     }
 
-    return Number(total*interes);
+    alert("Has seleccionado el método de pago: " + metodoPago.toUpperCase() +".\n Gracias por confiar en nosotros!\n \nEl total de tu compra es de: $" + Number(total*interes).toFixed(2));
 }
-
-//EJECUTANDO LA FUNCION
-//calcularTotalFinal(totalCompra);
-
-//ALERTA CON EL MONTO FINAL DE LA COMPRA
-//alert("Tu compra fue realizada, el costo de la misma es de $" + precioFinal + ". Muchas gracias por confiar en nosotros!");
