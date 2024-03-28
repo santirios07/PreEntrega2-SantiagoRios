@@ -188,5 +188,5 @@ function calcularTotalFinal(total){
         }
     }
 
-    alert("Has seleccionado el método de pago: " + metodoPago.toUpperCase() +".\n Gracias por confiar en nosotros!\n \nEl total de tu compra es de: $" + Number(total*interes).toFixed(2));
+    alert("Has seleccionado el método de pago: " + metodoPago.toUpperCase() +".\nEl total de tu compra es de: $" + Number(total*interes).toFixed(2) + "\nGracias por confiar en nosotros!\n");
 }
