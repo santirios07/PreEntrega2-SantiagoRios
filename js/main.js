@@ -64,9 +64,8 @@ do{
 
     switch(opcionMenu){
         case "1":
-            //MAP QUE CREA ARRAY DE LAS CATEGORIAS DE PRODUCTOS QUE EXISTEN
-            //NEW SET HACE QUE NO SE REPITAN LAS CATEGORIAS
-            const listaCategorias = [...new Set(productos.map((producto) => producto.categoria))];
+            //MAP QUE CREA ARRAY DE LAS CATEGORIAS DE PRODUCTOS QUE EXISTEN Y LAS FILTRA PARA NO REPETIRLAS
+            const listaCategorias = productos.map(producto => producto.categoria).filter((categoria, index, self) => self.indexOf(categoria) === index);
             
             //JOIN AL ARRAY CREADO PARA MOSTRAR EN PANTALLA LA CATEGORIA A SELECCIONAR
             let categoriaIngresada = prompt("Ingrese la categoria de la prenda que quieras comprar:\n -" + listaCategorias.join("\n -").toLocaleUpperCase()).toLowerCase();
