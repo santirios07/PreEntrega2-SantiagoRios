@@ -121,14 +121,13 @@ function agregarAlCarrito(categoria){
 
 //FUNCION PARA MOSTRAR EL CARRITO CON CADA PRODUCTO Y SU TOTAL
 function mostrarCarrito(){
-    //INICIALIZAR EL PRECIO TOTAL
-    let precioTotal = 0
+    //CALCULAR EL PRECIO TOTAL DEL CARRITO
+    let precioTotal = carrito.reduce((acc,producto)=> acc + producto.precio, 0);
 
     //MOSTRAR CADA PRODUCTO EN EL CARRITO
     let mensajeCarrito = "Excelente " + nombre.toUpperCase() + "! Estos son los productos que seleccionaste para comprar.\n";
     carrito.forEach(producto => {
         mensajeCarrito += "-" + producto.producto.toUpperCase() + ": $" + producto.precio + "\n";
-        precioTotal += producto.precio;
     })
 
     //PROMPT PARA DECIDIR SI CONTINUA COMPRANDO O FINALIZA LA COMPRA
