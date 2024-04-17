@@ -3,9 +3,6 @@
 //SE AGREGA CARRITO Y ARRAY DE PRODUCTOS CON SUS VARIANTES
 
 
-//PROMPT QUE PIDE EL NOMBRE DEL CLIENTE
-let nombre = prompt("Hola! Bienvenido a Mar Indumentaria. Por favor ingrese su nombre para continuar.").toUpperCase();
-
 //DEFINIENDO ARRAY DEL CARRITO VACIO PARA IR AGREGANDO LOS PRODUCTOS
 const carrito=[];
 
