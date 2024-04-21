@@ -1,61 +1,76 @@
-//ALGORITMO PARA DETECTAR PRODUCTO EN LA LISTA
-//SELECCIONAR METODO DE PAGO Y CALCULAR PRECIO FINAL SEGUN INTERES
-//SE AGREGA CARRITO Y ARRAY DE PRODUCTOS CON SUS VARIANTES
-
+//DEFINIENDO MIS PRODUCTOS A VENDER
+const productos=[
+    {
+        titulo: "Short Lila",
+        categoria: "pantalones",
+        precio: 4500,
+        img:"./images/shortLila.jpeg",
+        id: "S001",
+    },
+    {
+        titulo: "Short Jean",
+        categoria: "pantalones",
+        precio: 5500,
+        img:"./images/shortJean.jpeg",
+        id: "S002",
+    },
+    {
+        titulo: "Short Negro",
+        categoria: "pantalones",
+        precio: 4500,
+        img:"./images/shortNegro.jpeg",
+        id: "S003",
+    },
+    {
+        titulo: "Vestido Azul",
+        categoria: "vestidos",
+        precio: 8000,
+        img:"./images/vestidoAzul.jpeg",
+        id: "V001",
+    },
+]
 
 //DEFINIENDO ARRAY DEL CARRITO VACIO PARA IR AGREGANDO LOS PRODUCTOS
 const carrito=[];
 
-//DEFINIENDO MIS PRODUCTOS A VENDER
-// DIFERENTES TIPOS DE PANTALONES, REMERAS Y VESTIDOS
-const productos=[
-    {
-        producto: "short",
-        categoria: "pantalones",
-        precio: 4500,
-    },
-    {
-        producto: "jean",
-        categoria: "pantalones",
-        precio: 7500,
-    },
-    {
-        producto: "cargo",
-        categoria: "pantalones",
-        precio: 6000,
-    },
-    {
-        producto: "remera",
-        categoria: "remeras",
-        precio: 5700,
-    },
-    {
-        producto: "musculosa",
-        categoria: "remeras",
-        precio: 4500,
-    },
-    {
-        producto: "chomba",
-        categoria: "remeras",
-        precio: 7100,
-    },
-    {
-        producto: "vestidocorto",
-        categoria: "vestidos",
-        precio: 8000,
-    },
-    {
-        producto: "vestidolargo",
-        categoria: "vestidos",
-        precio: 9300,
-    },
-]
+//TRAYENDO DEL HTML
+const listaProductos = document.querySelector("#lista-productos");
+const carritoIcono = document.querySelector("#carrito-icono");
 
-//MENU PARA SELECCIONAR OPCIONES
-let opcionMenu;
-//VARIABLE PARA SABER SI LA COMPRA FUE TERMINADA
-let compraTerminada = false;
+//MOSTRANDO PRODUCTOS EN HTML
+productos.forEach((producto) => {
+    const div = document.createElement("div");
+    div.classList.add("py-5");
+    div.innerHTML = `
+    <div class="bg-gray-100 shadow-md rounded-lg">
+        <div class="max-w-sm">            
+            <img class="p-6 object-cover w-full" src="${producto.img}" alt="Short Lila">
+        </div>
+        <div class="px-5 pb-5 items-center">
+            <h3 class="text-gray-900 text-xl">${producto.titulo}</h3>
+            <div class="flex items-center justify-between py-2">
+            <span class="text-2xl font-bold text-gray-900">$${producto.precio}</span>
+            <button class="text-white bg-gray-700 hover:bg-gray-800 rounded-lg text-sm px-3 py-2 text-center" id="${producto.id}">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+    `;
+    listaProductos.append(div);
 
+    const botonAgregar = document.querySelector(`#${producto.id}`);
+
+    botonAgregar.addEventListener("click", () =>{
+        agregarAlCarrito(producto);
+    })
+    
+
+});
+
+
+
+
+
+/*
 do{
     opcionMenu = prompt("Encantados de conocerte " + nombre + "! Porfavor selecciona una opción:\n1. Ver productos \n2. Mostrar carrito \n3. Salir.")
 
@@ -84,8 +99,9 @@ do{
             alert("La opción ingresada no es válida. Por favor, vuelva a elegir una opción");   
     }
 }while (opcionMenu !== "3" && !compraTerminada);
-
+*/
 //ARMADO DE FUNCION PARA AGREGAR PRODUCTOS
+/*
 function agregarAlCarrito(categoria){
     //FILTRAR LOS PRODUCTOS DE LA CATEGORIA INGRESADA
     const categoriaProducto = productos.filter(productos => productos.categoria === categoria);
@@ -115,8 +131,9 @@ function agregarAlCarrito(categoria){
         }
     }
 }
-
+*/
 //FUNCION PARA MOSTRAR EL CARRITO CON CADA PRODUCTO Y SU TOTAL
+/*
 function mostrarCarrito(){
     //CALCULAR EL PRECIO TOTAL DEL CARRITO
     let precioTotal = carrito.reduce((acc,producto)=> acc + producto.precio, 0);
@@ -147,9 +164,10 @@ function mostrarCarrito(){
     
     return compraTerminada;
 }
-
+*/
 
 //FUNCION CALCULO DE TOTAL FINAL
+/*
 function calcularTotalFinal(total){
     //PROMPT PARA SELECCIONAR METODO DE PAGO
     let metodoPago = prompt("Tu total es $" + total + ". Ahora selecciona el metodo de pago con el que quieres realizar tu compra.\n Efectivo: 15% de descuento.\n Debito: sin recargo.\n Credito: \n -3 cuotas con un 10% de interes\n -6 cuotas con 25% de interés.").toLowerCase();
@@ -185,3 +203,4 @@ function calcularTotalFinal(total){
 
     alert("Has seleccionado el método de pago: " + metodoPago.toUpperCase() +".\nEl total de tu compra es de: $" + Number(total*interes).toFixed(2) + "\nGracias por confiar en nosotros!\n");
 }
+*/
