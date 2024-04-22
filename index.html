@@ -38,18 +38,18 @@
        </nav>
     </header>
     <main>
-        <section class="w-screen h-[400px] text-center relative text-center overflow-hidden">
+        <section class="w-screen h-[400px] text-center relative text-center overflow-hidden mx-auto">
             <div class="z-20 relative h-full flex flex-col justify-center items-center">
                 <h2 class="text-gray-800 text-5xl py-10">NUEVOS INGRESOS OTOÑO</h2>
                 <a href="#productos" class="border border-gray-800 bg-gray-800 text-fondoPrincipal hover:bg-gray-700 rounded p-2">Comprar Ahora</a>
             </div>
-            <div class="absolute top-0 bottom-0 z-10 h-screen w-screen">
-                <img class="object-cover object-center w-full" src="images/portadaotoño.jpg" alt="Portada Ingresos Otoño">
+            <div class="absolute top-0 bottom-0 z-10 h-full w-full">
+                <img class="object-cover object-center h-full w-full" src="images/portadaotoño.jpg" alt="Portada Ingresos Otoño">
             </div>
         </section>
         <section class="py-40 px-6 font-secundaria container mx-auto gap-4" id="productos">
             <h2 class="text-center text-4xl">Catálogo de productos</h2>
-            <article class="container mx-auto grid grid-cols-4 gap-10" id="lista-productos">
+            <article class="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10" id="lista-productos">
               <!--PRODUCTOS INSERTADOS DESDE JAVASCRIPT-->
             </article>
         </section>
