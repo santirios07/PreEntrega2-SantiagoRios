@@ -23,15 +23,16 @@
             <li><a href=""></a>Contacto</li>
         </ul>
         <!--Logo carrito-->
-        <a class="flex flex-grow justify-center basis-0" id="carrito-icono">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+        <div class="flex flex-grow justify-center basis-0 group" id="carrito-icono">
+            <svg class="group-hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none" href="">
                 <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
                 <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+                <span class="group-hover:scale-125 px-1 font-semibold text-l" id="icono-cantidad"></span>
             </svg>
-        </a>
+        </div>
        </nav>
     </header>
     <main>
@@ -44,7 +45,7 @@
                 <img class="object-cover object-center w-full" src="images/portadaotoño.jpg" alt="Portada Ingresos Otoño">
             </div>
         </section>
-        <section class="py-40 px-6 font-secundaria ontainer mx-auto gap-4" id="productos">
+        <section class="py-40 px-6 font-secundaria container mx-auto gap-4" id="productos">
             <h2 class="text-center text-4xl">Catálogo de productos</h2>
             <article class="container mx-auto grid grid-cols-4 gap-10" id="lista-productos">
               <!--PRODUCTOS INSERTADOS DESDE JAVASCRIPT-->
@@ -52,7 +53,7 @@
         </section>
     </main>
   <aside>
-      <!--Listado de carrito en offcanvas-->
+      <!--LISTADO DE CARRITO EN OFF CANVAS-->
       <div class="relative z-40 hidden" id="carrito" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
        <div class="fixed inset-0 overflow-hidden">
@@ -64,7 +65,7 @@
                    <div class="flex items-start justify-between">
                      <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Carrito</h2>
                      <div class="ml-3 flex h-7 items-center">
-                       <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                       <button id="cerrar-carrito" type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
                          <span class="absolute -inset-0.5"></span>
                          <span class="sr-only">Cerrar carrito</span>
                          <svg class="h-6 w-6" id="cerrarCarrito" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -75,33 +76,13 @@
                    </div>
      
                    <div class="mt-8">
-                     <div class="flow-root">
-                       <ul role="list" class="-my-6 divide-y divide-gray-200">
-                         <li class="flex py-6">
-                           <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                             <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
-                           </div>
-     
-                           <div class="ml-4 flex flex-1 flex-col">
-                             <div>
-                               <div class="flex justify-between text-base font-medium text-gray-900">
-                                 <h3>
-                                   <a href="#">Throwback Hip Bag</a>
-                                 </h3>
-                                 <p class="ml-4">$90.00</p>
-                               </div>
-                               <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                     <div class="flow-root divide-y divide-gray-200">
+                            <div class="text-center text-base font-medium text-gray-900" id="carrito-vacio">
+                               <h3>
+                                 TU CARRITO ESTA VACIO
+                               </h3>
                              </div>
-                             <div class="flex flex-1 items-end justify-between text-sm">
-                               <p class="text-gray-500">Cant.<span>1</span></p>
-     
-                               <div class="flex">
-                                 <button type="button" class="font-medium text-orange-600 hover:text-orange-500">Borrar</button>
-                               </div>
-                             </div>
-                           </div>
-                         </li>
-     
+                       <ul role="list" class=" divide-y divide-gray-200" id="lista-carrito">
                          <!--Productos desde Js -->
                        </ul>
                      </div>
@@ -109,9 +90,9 @@
                  </div>
      
                  <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                   <div class="flex justify-between text-base font-medium text-gray-900">
+                   <div class="flex justify-between text-xl font-bold text-gray-900">
                      <p>Total</p>
-                     <p id="#carritoTotal">$262.00</p>
+                     <p id="carrito-total">$262.00</p>
                    </div>
                    <div class="mt-6">
                      <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-600">Finalizar Compra</a>
@@ -119,7 +100,7 @@
                    <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                      <p>
                        o
-                       <button type="button" class="font-medium text-orange-600 hover:text-orange-500">
+                       <button type="button" class="font-medium text-orange-600 hover:text-orange-500" id="continuar-compra">
                          Continuar comprando
                          <span aria-hidden="true"> &rarr;</span>
                        </button>

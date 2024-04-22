@@ -35,7 +35,13 @@ const carrito=[];
 
 //TRAYENDO DEL HTML
 const listaProductos = document.querySelector("#lista-productos");
+const listaCarrito = document.querySelector("#lista-carrito");
 const carritoIcono = document.querySelector("#carrito-icono");
+const carritoVacio = document.querySelector("#carrito-vacio");
+const carritoTotal = document.querySelector("#carrito-total");
+const cerrarCarrito = document.querySelector("#cerrar-carrito");
+const continuarCompra = document.querySelector("#continuar-compra");
+
 
 //MOSTRANDO PRODUCTOS EN HTML
 productos.forEach((producto) => {
@@ -61,11 +67,92 @@ productos.forEach((producto) => {
 
     botonAgregar.addEventListener("click", () =>{
         agregarAlCarrito(producto);
+        document.querySelector("#carrito").classList.remove("hidden");
     })
-    
-
 });
 
+//FUNCION QUE ACTUALIZA CARRITO PARA MOSTRAR LA VISUAL
+function actualizarCarrito (){
+    if (carrito.length === 0){
+        carritoVacio.classList.remove("hidden");
+        listaCarrito.innerHTML = '';
+    } else{
+        carritoVacio.classList.add("hidden");
+        listaCarrito.innerHTML = '';
+        carrito.forEach(producto => {
+            //CREANDO PRODUCTO EN EL CARRITO
+            const productoCarrito = document.createElement('li');
+            productoCarrito.classList.add('flex', 'py-6');
+            productoCarrito.innerHTML = `
+                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <img src="${producto.img}" alt="${producto.titulo}" class="h-full w-full object-cover object-center">
+                </div>
+                <div class="ml-4 flex flex-1 flex-col">
+                    <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>
+                                <a href="#">${producto.titulo}</a>
+                            </h3>
+                            <p class="ml-4">$${producto.precio * producto.cantidad}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 items-end justify-between text-sm">
+                        <p class="text-gray-500">Cant: <span>${producto.cantidad}</span></p>
+                        <div class="flex">
+                            <button type="button" class="font-medium text-orange-600 hover:text-orange-500" id="borrar-${producto.id}">Borrar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            listaCarrito.append(productoCarrito);
+
+            const borrarCarrito = document.querySelector(`#borrar-${producto.id}`);
+
+            borrarCarrito.addEventListener("click", () =>{
+                borrarDelCarrito(producto);
+            })
+        })
+    }
+    actualizarTotal();
+}
+
+
+//AGREGAR PRODUCTOS AL CARRITO
+function agregarAlCarrito (producto){
+    const itemEnCarrito = carrito.find(item => item.id === producto.id);
+    itemEnCarrito ? itemEnCarrito.cantidad++ : carrito.push({...producto, cantidad:1});
+
+    actualizarCarrito ();
+}
+
+//BORRAR PRODUCTOS DEL CARRITO
+function borrarDelCarrito(producto){
+    const prodIndex = carrito.findIndex(item => item.id === producto.id);
+    carrito.splice(prodIndex, 1);
+
+    actualizarCarrito();
+}
+
+function actualizarTotal (){
+    const total = carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+    carritoTotal.innerText =`$${total}`;
+}
+
+
+//BOTON ESQUINA CERRAR CARRITO
+cerrarCarrito.addEventListener("click", () =>{
+    document.querySelector("#carrito").classList.add("hidden");
+})
+
+//BOTON CONTINUAR COMPRA CARRITO
+continuarCompra.addEventListener("click", () =>{
+    document.querySelector("#carrito").classList.add("hidden");
+})
+
+//ICONO DE CARRITO QUE ABRE EL CARRITO
+carritoIcono.addEventListener("click", () =>{
+    document.querySelector("#carrito").classList.remove("hidden");
+})
 
 
 
