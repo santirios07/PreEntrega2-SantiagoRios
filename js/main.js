@@ -30,8 +30,6 @@ const productos=[
     },
 ]
 
-//DEFINIENDO ARRAY DEL CARRITO VACIO PARA IR AGREGANDO LOS PRODUCTOS
-const carrito=[];
 
 //TRAYENDO DEL HTML
 const listaProductos = document.querySelector("#lista-productos");
@@ -39,8 +37,15 @@ const listaCarrito = document.querySelector("#lista-carrito");
 const carritoIcono = document.querySelector("#carrito-icono");
 const carritoVacio = document.querySelector("#carrito-vacio");
 const carritoTotal = document.querySelector("#carrito-total");
+const iconoCantidad = document.querySelector("#icono-cantidad");
 const cerrarCarrito = document.querySelector("#cerrar-carrito");
 const continuarCompra = document.querySelector("#continuar-compra");
+
+//DEFINIENDO ARRAY DEL CARRITO SI ESTA EN LOCALSTORAGE O VACIO PARA IR AGREGANDO LOS PRODUCTOS
+let carrito= JSON.parse(localStorage.getItem("carrito")) || [];
+
+//ACTUALIZAR CARRITO POR SI HAY EN LOCAL STORAGE
+actualizarCarrito();
 
 
 //MOSTRANDO PRODUCTOS EN HTML
@@ -111,9 +116,14 @@ function actualizarCarrito (){
             borrarCarrito.addEventListener("click", () =>{
                 borrarDelCarrito(producto);
             })
+
+            
         })
     }
     actualizarTotal();
+    actualizarHeader ();
+    //AGREGAR CARRITO AL LOCAL STORAGE
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 
@@ -136,6 +146,11 @@ function borrarDelCarrito(producto){
 function actualizarTotal (){
     const total = carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
     carritoTotal.innerText =`$${total}`;
+}
+
+function actualizarHeader (){
+    const cantidadProductos = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    iconoCantidad.innerText = cantidadProductos;
 }
 
 
