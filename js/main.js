@@ -1,35 +1,3 @@
-//DEFINIENDO MIS PRODUCTOS A VENDER
-const productos=[
-    {
-        titulo: "Short Lila",
-        categoria: "pantalones",
-        precio: 4500,
-        img:"./images/shortLila.jpeg",
-        id: "S001",
-    },
-    {
-        titulo: "Short Jean",
-        categoria: "pantalones",
-        precio: 5500,
-        img:"./images/shortJean.jpeg",
-        id: "S002",
-    },
-    {
-        titulo: "Short Negro",
-        categoria: "pantalones",
-        precio: 4500,
-        img:"./images/shortNegro.jpeg",
-        id: "S003",
-    },
-    {
-        titulo: "Vestido Azul",
-        categoria: "vestidos",
-        precio: 8000,
-        img:"./images/vestidoAzul.jpeg",
-        id: "V001",
-    },
-]
-
 
 //TRAYENDO DEL HTML
 const listaProductos = document.querySelector("#lista-productos");
@@ -44,37 +12,46 @@ const continuarCompra = document.querySelector("#continuar-compra");
 //DEFINIENDO ARRAY DEL CARRITO SI ESTA EN LOCALSTORAGE O VACIO PARA IR AGREGANDO LOS PRODUCTOS
 let carrito= JSON.parse(localStorage.getItem("carrito")) || [];
 
+//FETCH A JSON DE PRODUCTOS
+fetch("./data/productos.json")
+    .then(res => res.json())
+    .then(data => {
+        mostrarProductos(data);
+    })
+
 //ACTUALIZAR CARRITO POR SI HAY EN LOCAL STORAGE
 actualizarCarrito();
 
 
 //MOSTRANDO PRODUCTOS EN HTML
-productos.forEach((producto) => {
-    const div = document.createElement("div");
-    div.classList.add("py-5");
-    div.innerHTML = `
-    <div class="bg-gray-100 shadow-md rounded-lg">
-        <div class="max-w-sm">            
-            <img class="p-6 object-cover w-full" src="${producto.img}" alt="Short Lila">
-        </div>
-        <div class="px-5 pb-5 items-center">
-            <h3 class="text-gray-900 text-xl">${producto.titulo}</h3>
-            <div class="flex items-center justify-between py-2">
-            <span class="text-2xl font-bold text-gray-900">$${producto.precio}</span>
-            <button class="text-white bg-gray-700 hover:bg-gray-800 rounded-lg text-sm px-3 py-2 text-center" id="${producto.id}">Agregar al carrito</button>
+function mostrarProductos(productos){
+    productos.forEach((producto) => {
+        const div = document.createElement("div");
+        div.classList.add("py-5");
+        div.innerHTML = `
+        <div class="bg-gray-100 shadow-md rounded-lg">
+            <div class="max-w-sm">            
+                <img class="p-6 object-cover w-full" src="${producto.img}" alt="Short Lila">
+            </div>
+            <div class="px-5 pb-5 items-center">
+                <h3 class="text-gray-900 text-xl">${producto.titulo}</h3>
+                <div class="flex items-center justify-between py-2">
+                <span class="text-2xl font-bold text-gray-900">$${producto.precio}</span>
+                <button class="text-white bg-gray-700 hover:bg-gray-800 rounded-lg text-sm px-3 py-2 text-center" id="${producto.id}">Agregar al carrito</button>
+                </div>
             </div>
         </div>
-    </div>
-    `;
-    listaProductos.append(div);
-
-    const botonAgregar = document.querySelector(`#${producto.id}`);
-
-    botonAgregar.addEventListener("click", () =>{
-        agregarAlCarrito(producto);
-        document.querySelector("#carrito").classList.remove("hidden");
-    })
-});
+        `;
+        listaProductos.append(div);
+    
+        const botonAgregar = document.querySelector(`#${producto.id}`);
+    
+        botonAgregar.addEventListener("click", () =>{
+            agregarAlCarrito(producto);
+            document.querySelector("#carrito").classList.remove("hidden");
+        })
+    });
+}
 
 //FUNCION QUE ACTUALIZA CARRITO PARA MOSTRAR LA VISUAL
 function actualizarCarrito (){
