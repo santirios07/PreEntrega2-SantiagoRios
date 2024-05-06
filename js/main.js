@@ -12,11 +12,19 @@ const continuarCompra = document.querySelector("#continuar-compra");
 let carrito= JSON.parse(localStorage.getItem("carrito")) || [];
 
 //FETCH A JSON DE PRODUCTOS
-fetch("./data/productos.json")
-    .then(res => res.json())
-    .then(data => {
+async function obtenerProductos() {
+    try {
+        const response = await fetch("./data/productos.json");
+        const data = await response.json();
         mostrarProductos(data);
-    })
+    } catch (error) {
+        listaProductos.append("Error al obtener productos");
+        console.error("Error al obtener los productos:", error);
+    }
+}
+
+// LLAMADO A LA FUNCION DE OBTENER PRODUCTOS
+obtenerProductos();
 
 //ACTUALIZAR CARRITO POR SI HAY EN LOCAL STORAGE
 actualizarCarrito();

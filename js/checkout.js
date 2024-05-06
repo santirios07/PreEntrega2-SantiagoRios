@@ -4,6 +4,7 @@ const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
 //TRAYENDO DE HTML
 const listadoCheckout = document.querySelector("#listado-checkout");
 const totalCheckout = document.querySelector("#total-checkout");
+const iconoCantidad = document.querySelector("#icono-cantidad");
 
 
 //MOSTRAR PRODUCTOS EN LISTADO
@@ -25,16 +26,19 @@ carritoGuardado.forEach(producto => {
     `
 
     listadoCheckout.append(div);
-    actualizarTotal()
+    actualizarHeader();
+    actualizarTotal();
 });
 
 function actualizarTotal (){
     const total = carritoGuardado.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
     totalCheckout.innerText =`$${total}`;
-    iconoCantidad.innerText = cantidadProductos;
 }
 
-
+function actualizarHeader (){
+    const cantidadProductos = carritoGuardado.reduce((acc, producto) => acc + producto.cantidad, 0);
+    iconoCantidad.innerText = cantidadProductos;
+}
 
 
 
