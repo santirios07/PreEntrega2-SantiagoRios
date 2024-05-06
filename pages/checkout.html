@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/images/favicon.jpeg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <title>MAR INDUMENTARIA - CHECKOUT</title>
+</head>
+<body>
+    <header class="py-2 z-30 bg-fondoPrincipal font-principal drop-shadow-md">   
+        <h1 class="flex justify-center py-2 text-4xl font-principal">MAR INDUMENTARIA</h1>
+        <nav class="flex justify-between items-center w-full px-6">
+         <div class="flex flex-grow basis-0 justify-center">
+             <a href="index.html"><img class="w-20" src="/images/logo.png" alt="Logo Mar Indumentaria"></a>
+         </div>
+         <ul class="flex flex-grow justify-center gap-3 text-xl font-principal">
+             <li><a href="/index.html">Inicio</a></li>
+             <li><a href="/index.html#productos">Tienda</a></li>
+             <li><a href=""></a>Acerca de</li>
+             <li><a href=""></a>Contacto</li>
+         </ul>
+         <!--Logo carrito-->
+         <div class="flex flex-grow justify-center basis-0" id="carrito-icono">
+           <div class="cursor-pointer group flex" tabindex="0">
+             <svg class="group-hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none" href="">
+               <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+               <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+               <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+               <circle cx="10.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+               <circle cx="17.5" cy="20.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+               <span class="group-hover:scale-125 px-1 font-semibold text-l" id="icono-cantidad">0</span>
+           </svg>
+           </div>
+         </div>
+        </nav>
+     </header>
+    <main class="font-principal bg-fondoPrincipal">
+        <section class="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 h-screen" id="checkout">
+          <div class="bg-[#333]">
+            <div class="relative h-full">
+                <div class="p-8 lg:overflow-auto lg:h-[100vh]">
+                    <h2 class="text-2xl font-bold text-white">Tú carrito:</h2>
+                    <div class="space-y-6 mt-10" id="listado-checkout">
+                    <!--Listado de productos en carrito desde JS-->
+                    </div>
+                </div>
+                <div class="absolute left-0 bottom-0 bg-[#444] w-full p-4">
+                    <h4 class="flex flex-wrap gap-4 text-lg text-white">Total <span class="ml-auto" id="total-checkout">$0</span></h4>
+                </div>
+            </div>
+          </div>
+          <div class="xl:col-span-2 h-max rounded-md p-8">
+            <h2 class="text-2xl font-bold text-[#333]">Complete su orden</h2>
+            <form class="mt-10">
+              <div>
+                <h3 class="text-lg font-bold text-[#333] mb-6">Datos Personales</h3>
+                <div class="grid sm:grid-cols-2 gap-6">
+                  <div class="relative flex items-center">
+                    <input type="text" placeholder="Nombre"
+                      class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
+                      viewBox="0 0 24 24">
+                      <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                      <path
+                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                        data-original="#000000"></path>
+                    </svg>
+                  </div>
+                  <div class="relative flex items-center">
+                    <input type="text" placeholder="Apellido"
+                      class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
+                      viewBox="0 0 24 24">
+                      <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                      <path
+                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                        data-original="#000000"></path>
+                    </svg>
+                  </div>
+                  <div class="relative flex items-center">
+                    <input type="email" placeholder="Email"
+                      class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
+                      viewBox="0 0 682.667 682.667">
+                      <defs>
+                        <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                          <path d="M0 512h512V0H0Z" data-original="#000000"></path>
+                        </clipPath>
+                      </defs>
+                      <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                        <path fill="none" stroke-miterlimit="10" stroke-width="40"
+                          d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
+                          data-original="#000000"></path>
+                        <path
+                          d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
+                          data-original="#000000"></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="relative flex items-center">
+                    <input type="number" placeholder="Teléfono"
+                      class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                    <svg fill="#bbb" class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 64 64">
+                      <path
+                        d="m52.148 42.678-6.479-4.527a5 5 0 0 0-6.963 1.238l-1.504 2.156c-2.52-1.69-5.333-4.05-8.014-6.732-2.68-2.68-5.04-5.493-6.73-8.013l2.154-1.504a4.96 4.96 0 0 0 2.064-3.225 4.98 4.98 0 0 0-.826-3.739l-4.525-6.478C20.378 10.5 18.85 9.69 17.24 9.69a4.69 4.69 0 0 0-1.628.291 8.97 8.97 0 0 0-1.685.828l-.895.63a6.782 6.782 0 0 0-.63.563c-1.092 1.09-1.866 2.472-2.303 4.104-1.865 6.99 2.754 17.561 11.495 26.301 7.34 7.34 16.157 11.9 23.011 11.9 1.175 0 2.281-.136 3.29-.406 1.633-.436 3.014-1.21 4.105-2.302.199-.199.388-.407.591-.67l.63-.899a9.007 9.007 0 0 0 .798-1.64c.763-2.06-.007-4.41-1.871-5.713z"
+                        data-original="#000000"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6">
+                <h3 class="text-lg font-bold text-[#333] mb-6">Dirección de envío</h3>
+                <div class="grid sm:grid-cols-2 gap-6">
+                  <input type="text" placeholder="Calle y número"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <input type="text" placeholder="Ciudad"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <input type="text" placeholder="Provincia"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                  <input type="text" placeholder="Código Postal"
+                    class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
+                </div>
+                <div class="flex gap-6 max-sm:flex-col mt-10">
+                  <button type="button" class="rounded-md px-6 py-3 w-full text-md font-semibold bg-transparent hover:bg-gray-100 border-2 text-[#333]">Cancelar</button>
+                  <button type="button" class="rounded-md px-6 py-3 w-full text-md font-semibold bg-[#333] text-white hover:bg-[#222]">Completar Compra</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+    </main>
+    
+    <!--TAILWIND CSS-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/tailwind-config.js"></script>
+
+    <!--CHECKOUT JS-->
+    <script type="module" src="/js/checkout.js"></script>
+    
+</body>
+</html>

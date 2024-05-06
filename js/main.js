@@ -1,4 +1,3 @@
-
 //TRAYENDO DEL HTML
 const listaProductos = document.querySelector("#lista-productos");
 const listaCarrito = document.querySelector("#lista-carrito");
@@ -102,6 +101,7 @@ function actualizarCarrito (){
     //AGREGAR CARRITO AL LOCAL STORAGE
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
 
 
 //AGREGAR PRODUCTOS AL CARRITO
