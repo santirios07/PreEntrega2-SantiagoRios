@@ -5,6 +5,7 @@ const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
 const listadoCheckout = document.querySelector("#listado-checkout");
 const totalCheckout = document.querySelector("#total-checkout");
 const iconoCantidad = document.querySelector("#icono-cantidad");
+const botonCancelar = document.querySelector("#boton-cancelar");
 
 
 //MOSTRAR PRODUCTOS EN LISTADO
@@ -38,6 +39,29 @@ function actualizarTotal (){
 function actualizarHeader (){
     const cantidadProductos = carritoGuardado.reduce((acc, producto) => acc + producto.cantidad, 0);
     iconoCantidad.innerText = cantidadProductos;
+}
+
+
+//EVENTO BOTON CANCELAR
+botonCancelar.addEventListener("click", () => {
+    alertaCancelar();
+})
+
+
+//FUNCION PARA VOLVER ATRAS AL CANCELAR COMPRA
+function alertaCancelar(){
+    Swal.fire({
+        icon: "question",
+        title: "¿Está seguro que desea cancelar la compra?",
+        showCancelButton: true,
+        confirmButtonText: "Si, estoy seguro",
+        confirmButtonColor: "#FF9700",
+        cancelButtonText: "Volver"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = "/index.html#productos"
+        }
+      });
 }
 
 

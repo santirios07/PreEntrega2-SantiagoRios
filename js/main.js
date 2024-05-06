@@ -100,8 +100,7 @@ function actualizarCarrito (){
             const borrarCarrito = document.querySelector(`#borrar-${producto.id}`);
 
             borrarCarrito.addEventListener("click", () =>{
-                borrarDelCarrito(producto);
-                toastifyAlert("ELIMINADO");
+                alertaBorrar(producto);
             })
 
             
@@ -127,6 +126,7 @@ function agregarAlCarrito (producto){
 function borrarDelCarrito(producto){
     const prodIndex = carrito.findIndex(item => item.id === producto.id);
     carrito.splice(prodIndex, 1);
+    toastifyAlert("ELIMINADO");
 
     actualizarCarrito();
 }
@@ -169,4 +169,22 @@ function toastifyAlert (estado){
             borderRadius: "3px",
         },
     }).showToast();
+}
+
+
+//FUNCION SWEETALERT AL BORRAR PRODUCTO
+
+function alertaBorrar(producto){
+    Swal.fire({
+        icon: "warning",
+        title: "¿Está seguro que desea eliminar el producto?",
+        showCancelButton: true,
+        confirmButtonText: "Eliminar",
+        confirmButtonColor: "#FF9700",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+        borrarDelCarrito(producto);
+        }
+      });
 }
