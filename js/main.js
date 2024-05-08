@@ -4,6 +4,7 @@ const listaCarrito = document.querySelector("#lista-carrito");
 const carritoIcono = document.querySelector("#carrito-icono");
 const carritoVacio = document.querySelector("#carrito-vacio");
 const carritoTotal = document.querySelector("#carrito-total");
+const botonesCarrito = document.querySelector("#botones-carrito");
 const iconoCantidad = document.querySelector("#icono-cantidad");
 const cerrarCarrito = document.querySelector("#cerrar-carrito");
 const continuarCompra = document.querySelector("#continuar-compra");
@@ -66,9 +67,11 @@ function mostrarProductos(productos){
 function actualizarCarrito (){
     if (carrito.length === 0){
         carritoVacio.classList.remove("hidden");
+        botonesCarrito.classList.add("hidden");
         listaCarrito.innerHTML = '';
     } else{
         carritoVacio.classList.add("hidden");
+        botonesCarrito.classList.remove("hidden");
         listaCarrito.innerHTML = '';
         carrito.forEach(producto => {
             //CREANDO PRODUCTO EN EL CARRITO

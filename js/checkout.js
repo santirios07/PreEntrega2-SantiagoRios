@@ -34,6 +34,8 @@ carritoGuardado.forEach(producto => {
 function actualizarTotal (){
     const total = carritoGuardado.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
     totalCheckout.innerText =`$${total}`;
+
+    return total;
 }
 
 function actualizarHeader (){
@@ -65,4 +67,52 @@ function alertaCancelar(){
 }
 
 
+
+
+// EVENTO PARA EL FORMULARIO DE COMPRA
+const botonCompletarCompra = document.querySelector('#boton-completar-compra');
+botonCompletarCompra.addEventListener("click", (event) => {
+
+    // TOMANDO VALORES DEL FORMULARIO
+    const nombre = document.querySelector('input[name="nombre"]').value.trim();
+    const apellido = document.querySelector('input[name="apellido"]').value.trim();
+    const email = document.querySelector('input[name="email"]').value.trim();
+    const telefono = document.querySelector('input[name="telefono"]').value.trim();
+    const calleNumero = document.querySelector('input[name="calleNumero"]').value.trim();
+    const ciudad = document.querySelector('input[name="ciudad"]').value.trim();
+    const provincia = document.querySelector('input[name="provincia"]').value.trim();
+    const codigoPostal = document.querySelector('input[name="codigoPostal"]').value.trim();
+    
+    // MOSTRANDO DETALLES DE COMPRA EN HTML
+    const detallesCompra = document.querySelector('#detalles-compra');
+    detallesCompra.innerHTML = `
+        <h2><strong>Compra realizada! Tus datos son:<h2/>
+        <p><strong>Nombre:</strong> ${nombre} ${apellido}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Teléfono:</strong> ${telefono}</p>
+        <p><strong>Dirección:</strong> ${calleNumero}, ${ciudad}, ${provincia}, ${codigoPostal}</p>
+    `;
+
+    //ALERTA DE CONFIRMACION
+    Swal.fire({
+        title: `¡Gracias por tu compra ${nombre}!`,
+        text: `Se han enviado los detalles de pago al correo electrónico: ${email}. ¡Esperamos que disfrutes de tu compra!`,
+        description:`Total: ${actualizarTotal()}`,
+        showCloseButton: true,
+        icon: 'success',
+        confirmButtonText: 'Entendido',
+        
+    }).then((result) => {
+        if (result.isConfirmed) {
+            //BORRO CARRITO AL TERMINAR COMPRA
+            localStorage.removeItem('carrito');
+
+            //REDIRECCIONO AL INICIO
+            location.href = "/index.html"
+        }
+      });
+    
+    //PARA QUE EL FORMULARIO NO SE ENVIE AUTOMATICAMENTE  
+    event.preventDefault();
+});
 

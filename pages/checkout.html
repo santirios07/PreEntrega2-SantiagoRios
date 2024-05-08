@@ -52,14 +52,14 @@
                 </div>
             </div>
           </div>
-          <div class="xl:col-span-2 h-max rounded-md p-8">
+          <div class="xl:col-span-2 h-max rounded-md p-8" id="detalles-compra">
             <h2 class="text-2xl font-bold text-[#333]">Complete su orden</h2>
             <form class="mt-10">
               <div>
                 <h3 class="text-lg font-bold text-[#333] mb-6">Datos Personales</h3>
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div class="relative flex items-center">
-                    <input type="text" placeholder="Nombre"
+                    <input type="text" name="nombre" placeholder="Nombre"
                       class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
                       viewBox="0 0 24 24">
@@ -70,7 +70,7 @@
                     </svg>
                   </div>
                   <div class="relative flex items-center">
-                    <input type="text" placeholder="Apellido"
+                    <input type="text" name="apellido" placeholder="Apellido"
                       class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
                       viewBox="0 0 24 24">
@@ -81,7 +81,7 @@
                     </svg>
                   </div>
                   <div class="relative flex items-center">
-                    <input type="email" placeholder="Email"
+                    <input type="email" name="email" placeholder="Email"
                       class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4"
                       viewBox="0 0 682.667 682.667">
@@ -101,7 +101,7 @@
                     </svg>
                   </div>
                   <div class="relative flex items-center">
-                    <input type="number" placeholder="Teléfono"
+                    <input type="number" name="telefono" placeholder="Teléfono"
                       class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
                     <svg fill="#bbb" class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 64 64">
                       <path
@@ -114,18 +114,18 @@
               <div class="mt-6">
                 <h3 class="text-lg font-bold text-[#333] mb-6">Dirección de envío</h3>
                 <div class="grid sm:grid-cols-2 gap-6">
-                  <input type="text" placeholder="Calle y número"
+                  <input type="text" name="calleNumero" placeholder="Calle y número" required
                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
-                  <input type="text" placeholder="Ciudad"
+                  <input type="text" name="ciudad" placeholder="Ciudad"
                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
-                  <input type="text" placeholder="Provincia"
+                  <input type="text" name="provincia" placeholder="Provincia"
                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
-                  <input type="text" placeholder="Código Postal"
+                  <input type="text" name="codigoPostal" placeholder="Código Postal"
                     class="px-4 py-3.5 bg-white text-[#333] w-full text-sm border-b-2 focus:border-[#333] outline-none" />
                 </div>
                 <div class="flex gap-6 max-sm:flex-col mt-10">
                   <button type="button" class="rounded-md px-6 py-3 w-full text-md font-semibold bg-transparent hover:bg-gray-100 border-2 text-[#333]" id="boton-cancelar">Cancelar</button>
-                  <button type="button" class="rounded-md px-6 py-3 w-full text-md font-semibold bg-[#333] text-white hover:bg-[#222]">Completar Compra</button>
+                  <button type="submit" class="rounded-md px-6 py-3 w-full text-md font-semibold bg-[#333] text-white hover:bg-[#222]" id="boton-completar-compra">Completar Compra</button>
                 </div>
               </div>
             </form>
