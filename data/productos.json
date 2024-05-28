@@ -3,49 +3,49 @@
         "titulo": "Buzo Frisado",
         "categoria": "buzos",
         "precio": 9500,
-        "img":"/images/productos/buzoFrisado.jpeg",
+        "img":"./images/productos/buzoFrisado.jpeg",
         "id": "P001"
     },
 {
         "titulo": "Jean Clasico",
         "categoria": "pantalones",
         "precio": 9000,
-        "img":"../images/productos/jeansClasico.jpeg",
+        "img":"./images/productos/jeansClasico.jpeg",
         "id": "P002"
     },
 {
         "titulo": "Joggin Frisado",
         "categoria": "pantalones",
         "precio": 9000,
-        "img":"/images/productos/jogginFrisado.jpeg",
+        "img":"./images/productos/jogginFrisado.jpeg",
         "id": "P003"
     },
 {
         "titulo": "Sweater Tricolor",
         "categoria": "sweaters",
         "precio": 7000,
-        "img":"/images/productos/sweaterTricolor.jpeg",
+        "img":"./images/productos/sweaterTricolor.jpeg",
         "id": "P004"
     },
 {
         "titulo": "Sweater Globo",
         "categoria": "sweaters",
         "precio": 14000,
-        "img":"/images/productos/sweaterGlobo.jpeg",
+        "img":"./images/productos/sweaterGlobo.jpeg",
         "id": "P005"
     },
 {
         "titulo": "Wide Leg",
         "categoria": "pantalones",
         "precio": 13500,
-        "img":"/images/productos/wideLeg.jpeg",
+        "img":"./images/productos/wideLeg.jpeg",
         "id": "P006"
     },
 {
         "titulo": "Wide Leg Jean",
         "categoria": "pantalones",
         "precio": 13500,
-        "img":"/images/productos/wideLegJean.jpeg",
+        "img":"./images/productos/wideLegJean.jpeg",
         "id": "P007"
     }
 ]
